@@ -6,7 +6,7 @@ CREATE TABLE employee(
     Job VARCHAR(50) NOT NULL ,
     -- correct char to int
     ManagerCode CHAR(4),
-    HireDate DATE NOT NULL ,
+    HireDate DATE NOT NULL,
     --salary datatype add
     salary INT(20) NOT NULL,
     commision INT(20),
