@@ -3,7 +3,7 @@ CREATE TABLE employee(
     EmpCode INT(4) ,
     EmpFName VARCHAR(40) NOT NULL ,
     EmpName VARCHAR(20) ,
-    Job VARCHAR(50) NOT NULL ,
+    Job VARCHAR(50) NOT NULL,
     -- correct char to int
     ManagerCode CHAR(4),
     HireDate DATE NOT NULL,
