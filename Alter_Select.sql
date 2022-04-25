@@ -82,8 +82,73 @@ VALUES (9369, 'TONY', 'STARK', 'SOFTWARE ENGINEER', 7902, '1980-12-17', 2800,0,2
     --  -> where (for putting conditions)
         SELECT * FROM employee 
         WHERE  salary>2000 ;
+        
+        SELECT EmpFName,EmpName,DeptCode FROM employee
+        WHERE EmpCode=7566;
+
+        -- not equals to(<>)
+        SELECT EmpFName,EmpName,DeptCode FROM employee
+        WHERE EmpCode<>7566;
+
         --  OPERATORS :
             -- comparisons : =,>,<,>=,<=
+            -- <> -> not equals to
             -- Logical Operators : AND,BETWEEN,LIKE,NOT
-    --  -> 
+    
+            -- ORDER BY
+            -- by default orderiing is ascending order
+            SELECT * FROM employee
+            ORDER BY Salary;   
 
+            -- In descending order
+            SELECT * FROM employee
+            ORDER BY Salary DESC; 
+
+            -- in the case of common order data(for say same salary)
+            SELECT * FROM employee
+            ORDER BY Salary DESC, DeptCode ASC; 
+
+            -- aggregate functions: count,sum,avg,max,min
+                
+            -- count number of employees
+                SELECT count(*) FROM employee;
+            -- count average salary
+                SELECT avg(*) FROM employee;
+            -- highest earner data
+                SELECT max(*) FROM employee;
+            -- total salary
+                SELECT sum(*) FROM employee;
+
+            -- GROUP BY (group by is used to group the key passed and function id applied on group by keyword)
+            -- it will group the deptcode for say 
+            -- one group including all 10,one group including 20 similary  30,40 etc
+            -- and then conditions or Aggregate functions are applied on these groups
+            -- for function max(salary)
+            -- it will display max(salary) from each of
+            -- 10,20,30,40 etc
+            
+            SELECT DeptCode ,max(salary) FROM employee
+            GROUP BY DeptCode;
+
+            -- count number of employees in each dept           
+            SELECT DeptCode ,count(DeptCode) FROM employee
+            GROUP BY DeptCode;
+
+            --  calculate max salary dept wis and give there name    
+            SELECT DeptCode ,max(salary),EmpFName,EmpName,ManagerCode FROM employee
+            GROUP BY DeptCode;
+
+                -- HAVING function
+            -- we cannot use where with GROUP BY so SQL provide HAVING ,having works as where
+            -- used only with aggregate function
+            -- in short it is used to add check on GROUP BY
+            SELECT DeptCode ,min(salary),EmpFName,EmpName,ManagerCode FROM employee
+            GROUP BY DeptCode
+            HAVING min(salary>2000);
+            -- NOTE: 
+            -- 1...Group by jo hai wo same type of data ko ek group me daal dega 
+            -- 2...aur isme jo aggregate function use hua hai for say min(salary) ye in particular groups me jo minimum salary
+            -- ka data hoga use display kar dega
+            -- 3...HAVING me jo aggregate function hai wo us aggregate function pe lgega jispe jiske according group hua hai
+            -- matlab 2 me jo data aya hai ye usme se jo >2000 hai unhe dispaly kardega
+            
